@@ -21,6 +21,7 @@ A modern, full-stack enterprise resource planning (ERP) and customer relationshi
 - [Role-Based Access Control (RBAC)](#-role-based-access-control-rbac)
 - [REST API Reference](#-rest-api-reference)
 - [Local Setup & Installation](#-local-setup--installation)
+- [Deploying on Render](#-deploying-on-render)
 - [Troubleshooting Database Connection](#-troubleshooting-database-connection)
 - [Test Credentials](#-test-credentials)
 
@@ -174,6 +175,29 @@ npm install
 npm run dev
 ```
 *Frontend web portal will run at: `http://localhost:5173`*
+
+---
+
+## 🌐 Deploying on Render
+
+This project includes a pre-configured `render.yaml` Blueprint file for automatic 1-click deployment of the entire stack on [Render](https://render.com/).
+
+### Method 1: Automatic Blueprint Deployment (Recommended)
+
+1. Push your repository to GitHub:
+   ```bash
+   git add .
+   git commit -m "feat: add Render deployment blueprint"
+   git push origin main
+   ```
+2. Log in to [Render Dashboard](https://dashboard.render.com/).
+3. Click **New +** -> **Blueprints**.
+4. Connect your GitHub repository (`Gagan004-coder/erp`).
+5. Render will automatically detect `render.yaml` and provision:
+   - **`erp-db`**: PostgreSQL Database instance
+   - **`erp-backend`**: Node.js Express Web Service with Prisma migration & seed
+   - **`erp-frontend`**: React 18 Static Site with SPA routing
+6. Click **Apply**. Render will automatically build, migrate, seed, and deploy all services!
 
 ---
 
