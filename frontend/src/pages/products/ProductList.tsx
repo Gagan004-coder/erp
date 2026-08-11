@@ -106,17 +106,31 @@ export default function ProductList() {
             ) : result?.data.length === 0 ? (
               <tr><td colSpan={8} className="text-center text-gray-500 py-8">No products found</td></tr>
             ) : result?.data.map(p => (
-              <tr key={p.id}>
+              <tr key={p.id} className="group">
                 <td>
-                  <Link to={`/products/${p.id}`} className="text-brand-400 hover:text-brand-300 font-medium">
-                    {p.product_name}
-                  </Link>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-surface-700/80 border border-surface-600/60 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden shadow-inner group-hover:border-brand-500/40 transition-colors">
+                      <img 
+                        src="/assets/product_placeholder.png" 
+                        alt={p.product_name}
+                        className="w-full h-full object-cover rounded-lg transform group-hover:scale-105 transition-transform" 
+                      />
+                    </div>
+                    <div>
+                      <Link to={`/products/${p.id}`} className="text-white hover:text-brand-400 font-semibold transition-colors">
+                        {p.product_name}
+                      </Link>
+                      <span className="block text-[11px] text-gray-400 sm:hidden">SKU: {p.sku}</span>
+                    </div>
+                  </div>
                 </td>
                 <td className="font-mono text-xs text-gray-400">{p.sku}</td>
-                <td className="text-gray-400">{p.category}</td>
-                <td className="font-medium">₹{Number(p.unit_price).toLocaleString()}</td>
+                <td className="text-gray-300">
+                  <span className="badge badge-purple">{p.category}</span>
+                </td>
+                <td className="font-semibold text-white">₹{Number(p.unit_price).toLocaleString()}</td>
                 <td>
-                  <span className={`font-semibold ${p.current_stock <= p.minimum_stock ? 'text-amber-400' : 'text-gray-200'}`}>
+                  <span className={`font-semibold ${p.current_stock <= p.minimum_stock ? 'text-amber-400' : 'text-emerald-400'}`}>
                     {p.current_stock}
                   </span>
                   <span className="text-gray-500 text-xs"> / {p.minimum_stock} min</span>
