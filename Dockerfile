@@ -1,3 +1,5 @@
+# Unified Full-Stack Dockerfile (Frontend React + Backend Express + Prisma)
+
 # Stage 1: Build Frontend React Assets
 FROM node:18-alpine AS frontend-builder
 WORKDIR /app/frontend
@@ -16,7 +18,7 @@ RUN npm ci
 COPY backend/ ./
 RUN npm run build
 
-# Stage 3: Unified Production Runner
+# Stage 3: Production Runner
 FROM node:18-alpine AS runner
 WORKDIR /app/backend
 RUN apk add --no-cache openssl ca-certificates
