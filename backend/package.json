@@ -5,15 +5,15 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "prisma generate && tsc",
+    "build": "prisma generate && tsc && tsc prisma/seed.ts --outDir dist/seed --module commonjs --target es2020 --esModuleInterop --skipLibCheck --moduleResolution node",
     "start": "node dist/server.js",
     "db:push": "prisma db push",
-    "db:seed": "ts-node --transpile-only prisma/seed.ts",
+    "db:seed": "node dist/seed/prisma/seed.js",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate"
   },
   "prisma": {
-    "seed": "ts-node --transpile-only prisma/seed.ts"
+    "seed": "node dist/seed/prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
