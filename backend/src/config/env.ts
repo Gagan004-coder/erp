@@ -5,7 +5,7 @@ dotenv.config();
 
 const envSchema = z.object({
   DATABASE_URL: z.string().min(1),
-  JWT_SECRET: z.string().min(1),
+  JWT_SECRET: z.string().default('super-secret-jwt-key-2026-production'),
   JWT_EXPIRES_IN: z.string().default('7d'),
   PORT: z.string().default('3001'),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
