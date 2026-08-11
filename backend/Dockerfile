@@ -38,4 +38,4 @@ COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3001
 
-CMD ["sh", "-c", "npx prisma db push && npx prisma db seed && npm start"]
+CMD ["sh", "-c", "npx prisma db push && npm run db:seed && npm start"]
